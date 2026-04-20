@@ -1,3 +1,63 @@
+// ─── PARTICLE NETWORK CANVAS ─────────────────────────────────────
+const animCanvas = document.getElementById('anim-canvas');
+if (animCanvas) {
+  const ctx = animCanvas.getContext('2d');
+  const N = 50, DIST = 140, SPD = 0.28, C = '224,74,16';
+  let W, H, pts, live = false;
+
+  const resize = () => {
+    W = animCanvas.width = animCanvas.offsetWidth;
+    H = animCanvas.height = animCanvas.offsetHeight;
+  };
+  const init = () => {
+    pts = Array.from({length: N}, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * SPD, vy: (Math.random() - .5) * SPD
+    }));
+  };
+  const tick = () => {
+    if (!live) return;
+    ctx.clearRect(0, 0, W, H);
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${C},.55)`;
+      ctx.fill();
+    }
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < DIST) {
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = `rgba(${C},${.14 * (1 - d / DIST)})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  };
+
+  new IntersectionObserver(([e]) => {
+    live = e.isIntersecting;
+    if (live) tick();
+  }, {threshold: 0.1}).observe(animCanvas);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && live) tick();
+    else live = false;
+  });
+
+  resize(); init();
+  window.addEventListener('resize', () => { resize(); init(); }, {passive: true});
+}
+
 // ─── SCROLL REVEAL ────────────────────────────────────────────────
 const reveals = document.querySelectorAll('.reveal');
 if (reveals.length) {
