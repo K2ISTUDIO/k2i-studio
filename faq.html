@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Questions fréquentes — K2I Studio</title>
+  <meta name="description" content="Toutes les réponses à vos questions sur les services de K2I Studio : SMMA, création de site web, formation digitale, accompagnement numérique à Serris, Val d'Europe.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://k2i-studio.vercel.app/faq.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://k2i-studio.vercel.app/faq.html">
+  <meta property="og:title" content="FAQ — K2I Studio">
+  <meta property="og:description" content="Toutes les réponses à vos questions sur les services de K2I Studio.">
+  <meta property="og:image" content="https://k2i-studio.vercel.app/img/K2I%20LOGO.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="K2I Studio">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Où est situé K2I Studio ?", "acceptedAnswer": { "@type": "Answer", "text": "K2I Studio est basé à Serris, au cœur du Val d'Europe (77700), en Seine-et-Marne. Nous intervenons sur site dans tout le secteur et à distance partout en France." } },
+      { "@type": "Question", "name": "Quels types de clients accompagnez-vous ?", "acceptedAnswer": { "@type": "Answer", "text": "Nous accompagnons des TPE, PME, indépendants, associations et grandes entreprises dans leur développement digital." } },
+      { "@type": "Question", "name": "Combien coûte une prestation K2I Studio ?", "acceptedAnswer": { "@type": "Answer", "text": "Chaque projet est sur-mesure. Nous établissons un devis gratuit après un premier échange. Contactez-nous pour en discuter." } }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .faq-wrap { max-width: 780px; margin: 0 auto; padding: 8rem 2rem 6rem; }
+    .faq-label { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .faq-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.1; color: var(--text); margin: 0 0 0.5rem; }
+    .faq-sub { font-size: 1rem; color: var(--muted); margin: 0 0 3.5rem; line-height: 1.7; }
+    .faq-category { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 3rem 0 1.25rem; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:first-of-type { border-top: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      padding: 1.375rem 0; text-align: left;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--text);
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-q-icon {
+      width: 22px; height: 22px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; line-height: 1; color: var(--muted);
+      transition: transform 0.3s ease, border-color 0.2s, color 0.2s;
+    }
+    .faq-item.open .faq-q-icon { transform: rotate(45deg); border-color: var(--accent); color: var(--accent); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner { padding-bottom: 1.375rem; font-size: 0.9375rem; line-height: 1.75; color: var(--muted); }
+    .faq-a-inner a { color: var(--accent); text-decoration: none; }
+    .faq-a-inner a:hover { text-decoration: underline; }
+    .faq-cta { margin-top: 4rem; padding: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-align: center; }
+    .faq-cta-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--text); margin: 0 0 0.5rem; }
+    .faq-cta-sub { font-size: 0.9rem; color: var(--muted); margin: 0 0 1.5rem; }
+    @media (max-width: 768px) { .faq-wrap { padding: 6rem 1.25rem 4rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ─── NAVIGATION ───────────────────────────────────────────── -->
+  <nav class="nav" role="navigation">
+    <a href="index.html" class="nav-logo"><img src="/img/K2I%20LOGO.png" alt="K2I Studio" class="nav-logo-img"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Le Studio</a></li>
+      <li><a href="k2i-connect.html">K2I Connect</a></li>
+      <li><a href="k2i-formation.html">K2I Formation</a></li>
+      <li><a href="agence-web-val-deurope.html">Agence Web</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Démarrer un projet</a>
+    <button class="nav-toggle" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" role="dialog" aria-modal="true">
+    <ul>
+      <li><a href="index.html">Le Studio</a></li>
+      <li><a href="k2i-connect.html">K2I Connect</a></li>
+      <li><a href="k2i-formation.html">K2I Formation</a></li>
+      <li><a href="agence-web-val-deurope.html">Agence Web</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn-primary" style="margin-top:2rem;">Démarrer un projet</a>
+  </div>
+
+  <!-- ─── CONTENT ──────────────────────────────────────────────── -->
+  <main>
+    <div class="faq-wrap">
+      <div class="faq-label">Support</div>
+      <h1 class="faq-title">Questions fréquentes</h1>
+      <p class="faq-sub">Tout ce que vous voulez savoir sur K2I Studio, nos services et notre façon de travailler.</p>
+
+      <!-- GÉNÉRAL -->
+      <div class="faq-category">Général</div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Où est situé K2I Studio ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">K2I Studio est basé à Serris (77700), au cœur du Val d'Europe en Seine-et-Marne. Nous intervenons sur site dans tout le secteur (Marne-la-Vallée, Chessy, Magny-le-Hongre, Bailly-Romainvilliers…) et accompagnons également des clients partout en France à distance.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Depuis quand K2I Studio existe-t-il ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Présents dans le Val d'Europe depuis 2015 sous le nom <strong>K2i Design</strong>, nous avons évolué en <strong>K2I Studio</strong> en 2017 pour élargir notre offre : stratégie SMMA, content marketing, SEO et accompagnement digital. Plus de 10 ans d'expertise locale.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Quels types de clients accompagnez-vous ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Nous travaillons avec des TPE, PME, indépendants, associations et grandes entreprises. Notre portefeuille client est varié : Guerlain, Nike, BlaBlaCar, Disneyland Paris, La Vallée Village, mais aussi des acteurs locaux du Val d'Europe comme La Carpetterie ou PFC.</div></div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="faq-category">Nos services</div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Quelles prestations proposez-vous ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">K2I Studio couvre 4 pôles métiers : <strong>Le Studio</strong> (stratégie digitale, SMMA, branding, création de contenu), <strong>K2I Connect</strong> (accompagnement numérique pour seniors et personnes éloignées du digital), <strong>K2I Formation</strong> (formation marketing digital pour professionnels) et notre pôle <strong>Agence Web</strong> (création de sites internet sur mesure).</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Créez-vous des sites internet ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Nous créons des sites vitrines, e-commerce et landing pages optimisés SEO, performants et sur-mesure. Nous sommes l'agence web de référence dans le Val d'Europe. <a href="agence-web-val-deurope.html">En savoir plus →</a></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Qu'est-ce que le SMMA ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">SMMA signifie Social Media Marketing Agency. Concrètement : nous gérons votre présence sur les réseaux sociaux (Instagram, LinkedIn, TikTok, Facebook), créons vos contenus, définissons votre stratégie éditoriale et vous aidons à générer des leads et de la notoriété.</div></div>
+      </div>
+
+      <!-- TARIFS -->
+      <div class="faq-category">Tarifs & fonctionnement</div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Combien coûte une prestation ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Chaque projet est unique. Nous établissons un devis gratuit et sans engagement après un premier échange de 30 minutes. Les tarifs varient selon la nature, la durée et la complexité de la mission. <a href="contact.html">Contactez-nous</a> pour en discuter.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Proposez-vous des abonnements mensuels ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Nous proposons des formules d'accompagnement mensuel (gestion des réseaux sociaux, création de contenu régulier, suivi SEO). Ces formules garantissent une présence digitale continue et permettent de construire une audience sur le long terme.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Comment se déroule une collaboration ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">1. <strong>Premier échange</strong> (gratuit) — on comprend vos besoins et vos objectifs. 2. <strong>Proposition</strong> — on vous soumet un plan d'action et un devis. 3. <strong>Lancement</strong> — dès validation, on démarre la mission avec un point de suivi régulier. 4. <strong>Reporting</strong> — vous suivez les résultats en temps réel.</div></div>
+      </div>
+
+      <!-- K2I CONNECT -->
+      <div class="faq-category">K2I Connect</div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          K2I Connect s'adresse à qui ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">K2I Connect s'adresse principalement aux personnes âgées, aux seniors et à toute personne éloignée du numérique qui souhaite apprendre à utiliser un ordinateur, un smartphone, accéder aux démarches en ligne (Ameli, impôts, FranceConnect…) ou simplement naviguer sur Internet en toute sécurité.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Venez-vous à domicile ?
+          <span class="faq-q-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Oui. Nous nous déplaçons à votre domicile dans tout le secteur Val d'Europe et alentours (Serris, Chessy, Magny, Bailly-Romainvilliers, Meaux, Lagny-sur-Marne…). Les sessions se font à votre rythme, sans pression ni jargon technique.</div></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="faq-cta">
+        <p class="faq-cta-title">Vous n'avez pas trouvé votre réponse ?</p>
+        <p class="faq-cta-sub">Contactez-nous directement, nous répondons sous 48h.</p>
+        <a href="contact.html" class="btn-primary">Nous écrire
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="footer-wrap">
+    <div class="footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo"><img src="/img/K2I%20LOGO.png" alt="K2I Studio" class="footer-logo-img"></a>
+          <p>Agence SMMA &amp; experts digitaux établis à Serris (Val d'Europe) depuis 2017. Nous transformons les ambitions en présences digitales durables.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Le Studio</a></li>
+            <li><a href="k2i-connect.html">K2I Connect</a></li>
+            <li><a href="k2i-formation.html">K2I Formation</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Légal</div>
+          <ul class="footer-links">
+            <li><a href="mentions-legales.html">Mentions légales</a></li>
+            <li><a href="cgu.html">CGU</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@k2istudio.com">hello@k2istudio.com</a></li>
+            <li><a href="tel:+33756830226">07 56 83 02 26</a></li>
+            <li>4 bd Michael Faraday, 77700 Serris</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 K2I Studio. Tous droits réservés.</p>
+        <ul class="footer-social">
+          <li><a href="#" aria-label="Instagram">Ig</a></li>
+          <li><a href="#" aria-label="Facebook">Fb</a></li>
+          <li><a href="#" aria-label="X / Twitter">X</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
