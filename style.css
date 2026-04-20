@@ -606,7 +606,7 @@ a.contact-detail-value:hover { color: var(--accent); }
 /* ─── PORTFOLIO ──────────────────────────────────────────────────── */
 .portfolio-wrap { border-top: 1px solid var(--border); }
 .portfolio-header {
-  padding: 5rem 2rem 3rem;
+  padding: 3.5rem 2rem 2.5rem;
   max-width: 1400px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
 }
