@@ -778,6 +778,49 @@ a.contact-detail-value:hover { color: var(--accent); }
 .portfolio-pair .portfolio-item { aspect-ratio: 16/9; }
 @media (max-width: 768px) { .portfolio-pair { grid-template-columns: 1fr; } }
 
+/* ── Portfolio web section label ─────────────────────────────── */
+.portfolio-web-label {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.5rem 2rem 0.75rem;
+  max-width: 1400px; margin: 0 auto;
+}
+.pwl-tag {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); white-space: nowrap;
+}
+.pwl-line {
+  flex: 1; height: 1px; background: var(--border);
+}
+
+/* ── Portfolio web bento (featured websites) ─────────────────── */
+.portfolio-web {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 3px; background: var(--border);
+}
+.portfolio-web > .portfolio-item { aspect-ratio: 16/10; }
+.portfolio-web-right {
+  display: grid; grid-template-rows: 1fr 1fr;
+  gap: 3px; background: var(--border);
+}
+.portfolio-web-right .portfolio-item { aspect-ratio: unset; height: 100%; }
+.portfolio-item--web::after {
+  content: '↗ Site livré';
+  position: absolute; top: 0.85rem; right: 0.85rem;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--accent); color: #fff;
+  padding: 0.3rem 0.6rem; border-radius: 3px;
+  z-index: 2; opacity: 1; pointer-events: none;
+}
+@media (max-width: 768px) {
+  .portfolio-web { grid-template-columns: 1fr; }
+  .portfolio-web-right { grid-template-rows: unset; grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .portfolio-web-right { grid-template-columns: 1fr; }
+}
+
 .portfolio-arrow a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; }
 
 .portfolio-cta-row {
