@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /cgu.html
+Disallow: /mentions-legales.html
 
-Sitemap: https://k2i-studio.vercel.app/sitemap.xml
+Sitemap: https://k2istudio.com/sitemap.xml

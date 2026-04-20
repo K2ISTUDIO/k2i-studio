@@ -404,6 +404,47 @@ body {
 .cta-sub { font-size: 1rem; line-height: 1.7; color: var(--muted); max-width: 48ch; margin-top: 0.875rem; }
 
 /* ─── FOOTER ─────────────────────────────────────────────────────── */
+/* ─── ZONES SEO ──────────────────────────────────────────────────── */
+.zones-seo-wrap {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+.zones-seo-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: 5rem 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+}
+.zones-seo-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800;
+  line-height: 1.15; color: var(--text); margin: 0.75rem 0 1rem;
+}
+.zones-seo-title em { font-style: normal; color: var(--accent); }
+.zones-seo-sub { font-size: 0.9375rem; line-height: 1.75; color: var(--muted); margin: 0 0 1.5rem; max-width: 46ch; }
+.zones-seo-cta { font-size: 0.875rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+.zones-seo-cta:hover { text-decoration: underline; }
+.zones-seo-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 1px solid var(--border);
+}
+.zones-seo-grid li {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.zones-seo-grid li:hover { background: rgba(224,74,16,0.04); }
+.zones-seo-grid li:nth-child(2n) { border-right: none; }
+.zones-seo-grid li:nth-last-child(-n+2) { border-bottom: none; }
+.zones-seo-city { font-size: 0.875rem; font-weight: 500; color: var(--text); }
+.zones-seo-cp { font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (max-width: 900px) {
+  .zones-seo-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.25rem; }
+}
+
+/* ─── FOOTER ─────────────────────────────────────────────────────── */
 .footer-wrap { border-top: 1px solid var(--border); }
 .footer { padding: 4.5rem 2rem 2rem; max-width: 1400px; margin: 0 auto; }
 @media (max-width: 768px) { .footer { padding: 3rem 1.25rem 1.5rem; } }
