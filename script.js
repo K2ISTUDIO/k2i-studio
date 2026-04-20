@@ -1,3 +1,67 @@
+// ─── HERO LIQUID LIGHT ────────────────────────────────────────────
+const heroCanvas = document.getElementById('hero-canvas');
+if (heroCanvas) {
+  const hCtx = heroCanvas.getContext('2d');
+  let hW, hH, hT = 0, hMx = 0.5, hMy = 0.5, hLast = 0, hLive = true;
+
+  const hResize = () => {
+    hW = heroCanvas.width = heroCanvas.offsetWidth;
+    hH = heroCanvas.height = heroCanvas.offsetHeight;
+  };
+
+  document.addEventListener('mousemove', e => {
+    hMx = e.clientX / window.innerWidth;
+    hMy = e.clientY / window.innerHeight;
+  }, { passive: true });
+
+  // Lissajous orbs — each traces a unique figure-8 / looping path
+  const ORBS = [
+    { a: 1, b: 2, phi: 0,              rr: 0.60, col: [224, 74,  16], al: 0.14 },
+    { a: 2, b: 1, phi: Math.PI / 2,    rr: 0.50, col: [190, 30,  70], al: 0.11 },
+    { a: 3, b: 2, phi: Math.PI * 0.75, rr: 0.42, col: [245, 135, 20], al: 0.10 },
+    { a: 2, b: 3, phi: Math.PI * 1.4,  rr: 0.36, col: [ 95,  15,155], al: 0.09 },
+  ];
+
+  const hDraw = ts => {
+    if (!hLive) return;
+    if (ts - hLast < 1000 / 30) { requestAnimationFrame(hDraw); return; }
+    hLast = ts;
+    hT += 0.004;
+
+    hCtx.clearRect(0, 0, hW, hH);
+    hCtx.globalCompositeOperation = 'lighter'; // additive glow on dark bg
+
+    for (const o of ORBS) {
+      const lx = Math.sin(o.a * hT + o.phi);
+      const ly = Math.sin(o.b * hT);
+      const cx = hW * (0.5 + lx * 0.30 + (hMx - 0.5) * 0.07);
+      const cy = hH * (0.5 + ly * 0.24 + (hMy - 0.5) * 0.07);
+      const rad = Math.min(hW, hH) * o.rr;
+
+      const g = hCtx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+      const [r, gr, b] = o.col;
+      g.addColorStop(0,   `rgba(${r},${gr},${b},${o.al})`);
+      g.addColorStop(0.45,`rgba(${r},${gr},${b},${+(o.al * 0.3).toFixed(3)})`);
+      g.addColorStop(1,   `rgba(${r},${gr},${b},0)`);
+
+      hCtx.fillStyle = g;
+      hCtx.fillRect(0, 0, hW, hH);
+    }
+
+    hCtx.globalCompositeOperation = 'source-over';
+    requestAnimationFrame(hDraw);
+  };
+
+  document.addEventListener('visibilitychange', () => {
+    hLive = !document.hidden;
+    if (hLive) requestAnimationFrame(hDraw);
+  });
+
+  hResize();
+  window.addEventListener('resize', hResize, { passive: true });
+  requestAnimationFrame(hDraw);
+}
+
 // ─── PARTICLE NETWORK CANVAS ─────────────────────────────────────
 const animCanvas = document.getElementById('anim-canvas');
 if (animCanvas) {
