@@ -769,7 +769,7 @@ a.contact-detail-value:hover { color: var(--accent); }
 /* ─── GOOGLE BADGE IMG ───────────────────────────────────────────── */
 .google-badge-img {
   height: 32px; width: auto; object-fit: contain;
-  filter: brightness(0) invert(1); opacity: 0.65;
+  filter: none; opacity: 1;
 }
 
 /* ─── FOOTER LOGO IMAGE ──────────────────────────────────────────── */
