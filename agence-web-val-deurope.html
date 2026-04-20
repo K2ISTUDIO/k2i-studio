@@ -49,7 +49,7 @@
     },
     "telephone": "+33756830226",
     "email": "hello@k2istudio.com",
-    "foundingDate": "2017",
+    "foundingDate": "2015",
     "areaServed": [
       {"@type": "City", "name": "Serris"},
       {"@type": "City", "name": "Chessy"},
@@ -227,6 +227,57 @@
     }
     .captcha-error.show { display: block; }
 
+    /* ─── HISTOIRE ───────────────────────────────────────── */
+    .histoire-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+    @media (max-width: 768px) { .histoire-wrap { grid-template-columns: 1fr; } }
+
+    .histoire-img {
+      position: relative; overflow: hidden;
+    }
+    @media (max-width: 768px) { .histoire-img { height: 260px; } }
+    .histoire-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: brightness(0.55) grayscale(15%);
+      transition: transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .histoire-wrap:hover .histoire-img img { transform: scale(1.04); }
+    .histoire-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--bg) 100%);
+    }
+    @media (max-width: 768px) {
+      .histoire-img-overlay { background: linear-gradient(to bottom, transparent 60%, var(--bg) 100%); }
+    }
+
+    .histoire-content {
+      padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 768px) { .histoire-content { padding: 2.5rem 1.25rem; } }
+
+    .histoire-timeline { display: flex; flex-direction: column; gap: 0; }
+    .histoire-step {
+      display: grid; grid-template-columns: 60px 1fr;
+      gap: 1.25rem; padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .histoire-step:last-child { border-bottom: 1px solid var(--border); }
+    .histoire-year {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--accent);
+      padding-top: 0.2rem;
+    }
+    .histoire-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--text); margin-bottom: 0.375rem;
+    }
+    .histoire-desc { font-size: 0.875rem; line-height: 1.7; color: var(--muted); }
+
     /* ─── BREADCRUMB ──────────────────────────────────────── */
     .breadcrumb {
       display: flex; align-items: center; gap: 0.5rem;
@@ -334,8 +385,8 @@
             <span class="stat-lbl">Projets livrés</span>
           </div>
           <div class="stat-tile">
-            <span class="stat-num" style="font-size:1.125rem; padding-top:0.25rem; letter-spacing:0;">Val d'Europe</span>
-            <span class="stat-lbl">Secteur 77 · Serris</span>
+            <span class="stat-num" style="font-size:1.125rem; padding-top:0.25rem; letter-spacing:0;">Depuis 2015</span>
+            <span class="stat-lbl">K2i Design → K2I Studio</span>
           </div>
           <div class="stat-tile">
             <span class="stat-num"><span data-count="100">100</span><span class="a">%</span></span>
@@ -403,10 +454,10 @@
         </div>
         <div class="reveal">
           <p class="editorial-text">
-            Implantés au <strong>Val d'Europe depuis 2017</strong>, nous connaissons le tissu économique
-            local mieux que quiconque. De <strong>Serris à Chessy</strong>, de
-            <strong>Marne-la-Vallée à Bussy-Saint-Georges</strong> — nous construisons des présences
-            digitales qui parlent à votre marché de proximité.
+            Présents au <strong>Val d'Europe depuis 2015</strong> — d'abord sous le nom <strong>K2i Design</strong>,
+            devenus <strong>K2I Studio</strong> en 2017 — nous connaissons le tissu économique local
+            mieux que quiconque. De <strong>Serris à Chessy</strong>, de <strong>Marne-la-Vallée à
+            Bussy-Saint-Georges</strong> : 10 ans de présence locale, de projets livrés et de clients fidèles.
           </p>
           <p class="editorial-text" style="margin-top:1rem;">
             Pas de sous-traitance off-shore, pas de template recyclé. Chaque site est conçu pour
@@ -435,6 +486,43 @@
       </div>
     </div>
   </section>
+
+  <!-- ─── NOTRE HISTOIRE ──────────────────────────────────────────── -->
+  <div class="histoire-wrap">
+    <div class="histoire-img">
+      <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&auto=format&fit=crop&q=75" alt="Agence web créative Val d'Europe" loading="lazy">
+      <div class="histoire-img-overlay"></div>
+    </div>
+    <div class="histoire-content">
+      <div class="section-label" style="color:var(--accent);">Notre histoire</div>
+      <h2 class="section-title" style="font-size:clamp(1.75rem,3vw,2.5rem); margin-bottom:2.5rem;">
+        Depuis 2015,<br>on construit sur le 77.
+      </h2>
+      <div class="histoire-timeline">
+        <div class="histoire-step reveal">
+          <span class="histoire-year">2015</span>
+          <div class="histoire-body">
+            <h3 class="histoire-title">K2i Design</h3>
+            <p class="histoire-desc">Création de l'agence à Serris sous le nom K2i Design. Premiers clients du Val d'Europe, spécialisation en création de sites internet et identité visuelle locale.</p>
+          </div>
+        </div>
+        <div class="histoire-step reveal">
+          <span class="histoire-year">2017</span>
+          <div class="histoire-body">
+            <h3 class="histoire-title">K2I Studio</h3>
+            <p class="histoire-desc">Transformation en K2I Studio. L'offre s'élargit : stratégie SMMA, content marketing, SEO, growth — tout en restant ancrés à Serris, au cœur du Val d'Europe.</p>
+          </div>
+        </div>
+        <div class="histoire-step reveal">
+          <span class="histoire-year">2025</span>
+          <div class="histoire-body">
+            <h3 class="histoire-title">Référence locale</h3>
+            <p class="histoire-desc">10 ans de présence, 120+ projets livrés, clients en France et à l'international. K2I Studio est la référence digitale du secteur Val d'Europe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ─── SERVICES SEO ──────────────────────────────────────────── -->
   <div class="bg-surface">
@@ -574,6 +662,15 @@
       </div>
 
       <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span class="faq-q-text">C'est quoi K2i Design ? Quel lien avec K2I Studio ?</span>
+            <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          </button>
+          <p class="faq-answer">
+            K2i Design est le nom sous lequel l'agence a été fondée à Serris en 2015. En 2017, nous avons élargi notre offre — SEO, SMMA, stratégie de croissance — et renommé la structure <strong style="color:var(--text);">K2I Studio</strong>. Même équipe, même ADN local, même adresse au Val d'Europe. Cette continuité de 10 ans nous donne une connaissance unique du tissu économique et des entreprises du secteur 77.
+          </p>
+        </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
             <span class="faq-q-text">Où est située l'agence K2I Studio ?</span>
