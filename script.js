@@ -1,15 +1,3 @@
-// ─── HERO ETHEREAL SHADOW ─────────────────────────────────────────
-const hueMatrix = document.getElementById('hero-hue-matrix');
-if (hueMatrix) {
-  let start = null;
-  const duration = 9000;
-  (function animateEthereal(ts) {
-    if (!start) start = ts;
-    hueMatrix.setAttribute('values', (((ts - start) / duration * 360) % 360).toFixed(1));
-    requestAnimationFrame(animateEthereal);
-  })(performance.now());
-}
-
 // ─── SCROLL REVEAL ────────────────────────────────────────────────
 const reveals = document.querySelectorAll('.reveal');
 if (reveals.length) {
