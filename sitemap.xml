@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://k2i-studio.vercel.app/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://k2i-studio.vercel.app/k2i-connect.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://k2i-studio.vercel.app/k2i-formation.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://k2i-studio.vercel.app/agence-web-val-deurope.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://k2i-studio.vercel.app/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://k2i-studio.vercel.app/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://k2i-studio.vercel.app/sitemap-page.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://k2i-studio.vercel.app/mentions-legales.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://k2i-studio.vercel.app/cgu.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://k2istudio.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://k2istudio.com/k2i-connect.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://k2istudio.com/k2i-formation.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://k2istudio.com/agence-web-val-deurope.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://k2istudio.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://k2istudio.com/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://k2istudio.com/sitemap-page.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://k2istudio.com/mentions-legales.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://k2istudio.com/cgu.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
