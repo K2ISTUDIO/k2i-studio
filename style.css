@@ -768,7 +768,7 @@ a.contact-detail-value:hover { color: var(--accent); }
 
 /* ─── GOOGLE BADGE IMG ───────────────────────────────────────────── */
 .google-badge-img {
-  height: 32px; width: auto; object-fit: contain;
+  height: 56px; width: auto; object-fit: contain;
   filter: none; opacity: 1;
 }
 
