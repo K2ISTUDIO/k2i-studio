@@ -806,12 +806,18 @@ a.contact-detail-value:hover { color: var(--accent); }
 }
 .portfolio-web-right .portfolio-item { aspect-ratio: unset; height: 100%; }
 .portfolio-item--web::after {
-  content: '↗ Site livré';
-  position: absolute; top: 0.85rem; right: 0.85rem;
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  background: var(--accent); color: #fff;
-  padding: 0.3rem 0.6rem; border-radius: 3px;
-  z-index: 2; opacity: 1; pointer-events: none;
+  content: '↗';
+  position: absolute; top: 0.9rem; right: 0.9rem;
+  font-size: 0.75rem; line-height: 1.75rem;
+  width: 1.75rem; height: 1.75rem;
+  text-align: center;
+  display: block;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  color: #fff;
+  z-index: 2; pointer-events: none;
 }
 @media (max-width: 768px) {
   .portfolio-web { grid-template-columns: 1fr; }
