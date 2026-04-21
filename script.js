@@ -306,3 +306,11 @@ document.querySelectorAll('.magnetic').forEach(btn => {
   });
   btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
+
+// ─── PORTFOLIO ITEMS CLICKABLE ────────────────────────────────────
+document.querySelectorAll('.portfolio-item').forEach(item => {
+  item.addEventListener('click', e => {
+    if (e.target.closest('a')) return; // laisser les liens overlay fonctionner
+    window.location.href = 'contact.html';
+  });
+});
