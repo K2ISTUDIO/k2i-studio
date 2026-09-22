@@ -130,7 +130,28 @@
   <section aria-label="Introduction" class="hero-section">
 
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
-    <div class="hero-sphere" data-parallax="0.08" aria-hidden="true"></div>
+    <div class="hero-sphere-wrap" data-parallax="0.08" aria-hidden="true">
+      <div class="hero-sphere">
+        <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="liquidNoise" x="-40%" y="-40%" width="180%" height="180%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="4" result="noise">
+                <animate attributeName="baseFrequency" dur="26s" values="0.011 0.015;0.017 0.010;0.011 0.015" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="48" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <radialGradient id="liquidGrad" cx="36%" cy="30%" r="78%">
+              <stop offset="0%" stop-color="#ffb37a" />
+              <stop offset="18%" stop-color="#e04a10" />
+              <stop offset="45%" stop-color="#f06ba8" />
+              <stop offset="72%" stop-color="#78bae6" />
+              <stop offset="100%" stop-color="#ffffff" />
+            </radialGradient>
+          </defs>
+          <circle cx="300" cy="300" r="260" fill="url(#liquidGrad)" filter="url(#liquidNoise)" />
+        </svg>
+      </div>
+    </div>
     <div class="ring-ornament" style="width:720px; height:720px; top:50%; right:-8%; transform:translateY(-50%);" aria-hidden="true"></div>
     <div class="ring-ornament" style="width:560px; height:560px; top:50%; right:2%; transform:translateY(-50%);" aria-hidden="true"></div>
 

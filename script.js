@@ -325,7 +325,10 @@ if (parallaxEls.length) {
       const speed = parseFloat(el.dataset.parallax) || 0.15;
       const r = el.getBoundingClientRect();
       const center = r.top + r.height / 2 - vh / 2;
-      el.style.transform = `translateY(${center * -speed}px)`;
+      // Set as a custom property rather than el.style.transform directly, so this
+      // never clobbers a base transform (e.g. centering) or a CSS keyframe animation
+      // already running on the same element.
+      el.style.setProperty('--parallax-y', `${center * -speed}px`);
     });
     ticking = false;
   };

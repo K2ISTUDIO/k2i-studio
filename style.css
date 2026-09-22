@@ -258,27 +258,38 @@ a.link-ghost, .link-ghost {
 
 .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
 
-/* ─── HERO SPHERE ────────────────────────────────────────────────── */
-.hero-sphere {
+/* ─── HERO SPHERE (liquid gradient blob) ──────────────────────────
+   Two layers on purpose: the outer -wrap is the ONLY element the scroll
+   parallax script touches (data-parallax sets its transform on scroll),
+   while the inner .hero-sphere owns the continuous CSS animation. Putting
+   both transforms on one element made the parallax JS stomp the keyframe
+   animation on every scroll tick, which read as stuttery/janky. */
+.hero-sphere-wrap {
   position: absolute; top: 50%; right: -6%;
   width: min(46vw, 620px); height: min(46vw, 620px);
-  transform: translateY(-50%);
-  border-radius: 50%;
-  background: var(--gradient-sphere);
-  filter: blur(2px);
+  transform: translateY(calc(-50% + var(--parallax-y, 0px)));
   z-index: 0;
-  opacity: 0.92;
-  animation: sphereFloat 10s ease-in-out infinite;
   will-change: transform;
 }
-@keyframes sphereFloat {
-  0%, 100% { transform: translateY(-50%) scale(1); }
-  50% { transform: translateY(calc(-50% - 18px)) scale(1.015); }
+.hero-sphere {
+  width: 100%; height: 100%; border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.94;
+  filter: saturate(1.12);
+  -webkit-mask-image: radial-gradient(circle, #000 60%, transparent 100%);
+  mask-image: radial-gradient(circle, #000 60%, transparent 100%);
+  animation: sphereDrift 24s ease-in-out infinite;
+  will-change: transform;
 }
-@media (max-width: 1024px) { .hero-sphere { right: -18%; opacity: 0.75; } }
+.hero-sphere svg { display: block; width: 100%; height: 100%; }
+@keyframes sphereDrift {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50%      { transform: scale(1.035) rotate(5deg); }
+}
+@media (max-width: 1024px) { .hero-sphere-wrap { right: -18%; } .hero-sphere { opacity: 0.78; } }
 @media (max-width: 768px) {
-  .hero-sphere { width: 82vw; height: 82vw; right: -30%; top: 16%; transform: none; opacity: 0.55; }
-  @keyframes sphereFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+  .hero-sphere-wrap { width: 82vw; height: 82vw; right: -30%; top: 16%; transform: translateY(var(--parallax-y, 0px)); }
+  .hero-sphere { opacity: 0.6; }
 }
 
 .ring-ornament {
