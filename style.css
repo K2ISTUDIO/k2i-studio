@@ -45,18 +45,24 @@ body {
 }
 .cursor-dot {
   width: 6px; height: 6px; border-radius: 50%;
-  background: var(--ink);
+  background: var(--accent);
 }
 .cursor-ring {
   width: 34px; height: 34px; border-radius: 50%;
   border: 1px solid var(--ink);
-  transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-  opacity: 0.55;
+  transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  opacity: 0.45;
+  background: transparent;
 }
+/* Text links: ring just highlights in accent, never fills — text stays fully legible */
+.cursor-ring.is-text {
+  width: 40px; height: 40px;
+  border-color: var(--accent); opacity: 0.9;
+}
+/* Surface elements (buttons, cards, images): soft translucent glow, never opaque */
 .cursor-ring.is-active {
-  width: 64px; height: 64px;
-  background: var(--ink); opacity: 1;
-  mix-blend-mode: normal;
+  width: 60px; height: 60px;
+  background: rgba(22,21,26,0.05); border-color: rgba(22,21,26,0.12); opacity: 1;
 }
 .cursor-ring.is-active ~ .cursor-dot,
 body.cursor-hover .cursor-dot { opacity: 0; }

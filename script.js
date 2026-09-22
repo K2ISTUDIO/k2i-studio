@@ -17,12 +17,17 @@ if (cursorDot && cursorRing && matchMedia('(hover: hover)').matches) {
   };
   requestAnimationFrame(ringTick);
 
-  const hoverables = 'a, button, .magnetic, .portfolio-item, .service-row, input, textarea, select, .stat-tile, .approach-cell, .offer-cell, .formation-cell';
+  // Surface elements get a soft translucent glow; plain text links only get an accent outline
+  // (never an opaque fill) so hovering never hides the text underneath.
+  const surfaceHoverables = '.btn-primary, .btn-ghost, .nav-cta, button, .magnetic, .portfolio-item, .service-row, input, textarea, select, .stat-tile, .approach-cell, .offer-cell, .formation-cell';
+  const textHoverables = 'a';
   document.addEventListener('mouseover', e => {
-    if (e.target.closest(hoverables)) cursorRing.classList.add('is-active');
+    if (e.target.closest(surfaceHoverables)) cursorRing.classList.add('is-active');
+    else if (e.target.closest(textHoverables)) cursorRing.classList.add('is-text');
   });
   document.addEventListener('mouseout', e => {
-    if (e.target.closest(hoverables)) cursorRing.classList.remove('is-active');
+    if (e.target.closest(surfaceHoverables)) cursorRing.classList.remove('is-active');
+    else if (e.target.closest(textHoverables)) cursorRing.classList.remove('is-text');
   });
   document.addEventListener('mousedown', () => cursorRing.style.transform += ' scale(0.85)');
   document.body.classList.add('has-custom-cursor');
