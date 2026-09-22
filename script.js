@@ -33,6 +33,41 @@ if (cursorDot && cursorRing && matchMedia('(hover: hover)').matches) {
   document.body.classList.add('has-custom-cursor');
 }
 
+// ─── LIQUID SPHERE: reacts to the cursor ──────────────────────────
+// The glossy highlight follows the pointer and the liquid displacement
+// intensifies near it, then eases back to its resting state when the
+// pointer leaves — the shape itself stays perfectly round (clipped in
+// the SVG), only the fluid texture inside reacts.
+const sphereWrap = document.getElementById('hero-sphere-wrap');
+const sphereGrad = document.getElementById('liquidGrad');
+const sphereDisp = document.getElementById('liquidDisplace');
+if (sphereWrap && sphereGrad && sphereDisp && matchMedia('(hover: hover)').matches) {
+  const REST = { x: 36, y: 30, scale: 28 };
+  let gx = REST.x, gy = REST.y, scale = REST.scale;
+  let tx = REST.x, ty = REST.y, tScale = REST.scale;
+
+  document.addEventListener('mousemove', e => {
+    const r = sphereWrap.getBoundingClientRect();
+    if (!r.width) return;
+    const px = ((e.clientX - r.left) / r.width) * 100;
+    const py = ((e.clientY - r.top) / r.height) * 100;
+    const inside = px > -15 && px < 115 && py > -15 && py < 115;
+    if (inside) { tx = px; ty = py; tScale = 58; }
+    else { tx = REST.x; ty = REST.y; tScale = REST.scale; }
+  }, { passive: true });
+
+  const sphereTick = () => {
+    gx += (tx - gx) * 0.055;
+    gy += (ty - gy) * 0.055;
+    scale += (tScale - scale) * 0.055;
+    sphereGrad.setAttribute('cx', gx.toFixed(2) + '%');
+    sphereGrad.setAttribute('cy', gy.toFixed(2) + '%');
+    sphereDisp.setAttribute('scale', scale.toFixed(1));
+    requestAnimationFrame(sphereTick);
+  };
+  requestAnimationFrame(sphereTick);
+}
+
 // ─── HERO CONCENTRIC RING PULSE (ink, on parchment) ──────────────
 const heroCanvas = document.getElementById('hero-canvas');
 if (heroCanvas) {
