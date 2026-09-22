@@ -252,7 +252,7 @@ if (contactForm) {
   };
   _initCaptcha();
 
-  contactForm.addEventListener('submit', e => {
+  contactForm.addEventListener('submit', async e => {
     e.preventDefault();
     const honeypot = contactForm.querySelector('[name="website"]');
     if (honeypot && honeypot.value) return;
@@ -264,22 +264,49 @@ if (contactForm) {
       return;
     }
     if (_captchaErr) _captchaErr.style.display = 'none';
+
     const btn = contactForm.querySelector('[type="submit"]');
     const original = btn.textContent;
-    btn.textContent = 'Message envoyé ✓';
-    btn.style.background = '#2d6a30';
-    btn.style.borderColor = '#2d6a30';
-    btn.style.color = '#fff';
     btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = original;
-      btn.style.background = '';
-      btn.style.borderColor = '';
-      btn.style.color = '';
-      btn.disabled = false;
-      contactForm.reset();
-      _initCaptcha();
-    }, 4000);
+    btn.textContent = 'Envoi en cours…';
+
+    const payload = Object.fromEntries(new FormData(contactForm).entries());
+    payload.source = 'contact';
+
+    try {
+      const res = await fetch('/api/send-contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('send-contact failed');
+
+      btn.textContent = 'Message envoyé ✓';
+      btn.style.background = '#2d6a30';
+      btn.style.borderColor = '#2d6a30';
+      btn.style.color = '#fff';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+        btn.disabled = false;
+        contactForm.reset();
+        _initCaptcha();
+      }, 4000);
+    } catch (err) {
+      btn.textContent = 'Erreur — réessayez';
+      btn.style.background = '#b3261e';
+      btn.style.borderColor = '#b3261e';
+      btn.style.color = '#fff';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 4000);
+    }
   });
 }
 

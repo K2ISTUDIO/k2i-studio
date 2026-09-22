@@ -982,7 +982,7 @@
     // ─── FORM SUBMIT ────────────────────────────────────────────
     const seoForm = document.getElementById('seo-contact-form');
     if (seoForm) {
-      seoForm.addEventListener('submit', e => {
+      seoForm.addEventListener('submit', async e => {
         e.preventDefault();
 
         // Honeypot check
@@ -999,19 +999,40 @@
         }
         errEl?.classList.remove('show');
 
-        // Success
         const btn = seoForm.querySelector('[type="submit"]');
         const orig = btn.innerHTML;
-        btn.innerHTML = 'Demande envoyée — à très vite !';
-        btn.style.background = '#2d6a30';
         btn.disabled = true;
-        setTimeout(() => {
-          btn.innerHTML = orig;
-          btn.style.background = '';
-          btn.disabled = false;
-          seoForm.reset();
-          initCaptcha();
-        }, 5000);
+        btn.innerHTML = 'Envoi en cours…';
+
+        const payload = Object.fromEntries(new FormData(seoForm).entries());
+        payload.source = 'agence-web-devis';
+
+        try {
+          const res = await fetch('/api/send-contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          if (!res.ok) throw new Error('send-contact failed');
+
+          btn.innerHTML = 'Demande envoyée — à très vite !';
+          btn.style.background = '#2d6a30';
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.style.background = '';
+            btn.disabled = false;
+            seoForm.reset();
+            initCaptcha();
+          }, 5000);
+        } catch (err) {
+          btn.innerHTML = 'Erreur — réessayez';
+          btn.style.background = '#b3261e';
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 4000);
+        }
       });
     }
   </script>
