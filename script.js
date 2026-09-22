@@ -1,54 +1,66 @@
-// ─── HERO LIQUID LIGHT ────────────────────────────────────────────
+// ─── CUSTOM CURSOR ────────────────────────────────────────────────
+const cursorDot  = document.querySelector('.cursor-dot');
+const cursorRing = document.querySelector('.cursor-ring');
+if (cursorDot && cursorRing && matchMedia('(hover: hover)').matches) {
+  let mx = innerWidth / 2, my = innerHeight / 2;
+  let rx = mx, ry = my;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursorDot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+  }, { passive: true });
+
+  const ringTick = () => {
+    rx += (mx - rx) * 0.18;
+    ry += (my - ry) * 0.18;
+    cursorRing.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    requestAnimationFrame(ringTick);
+  };
+  requestAnimationFrame(ringTick);
+
+  const hoverables = 'a, button, .magnetic, .portfolio-item, .service-row, input, textarea, select, .stat-tile, .approach-cell, .offer-cell, .formation-cell';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(hoverables)) cursorRing.classList.add('is-active');
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest(hoverables)) cursorRing.classList.remove('is-active');
+  });
+  document.addEventListener('mousedown', () => cursorRing.style.transform += ' scale(0.85)');
+  document.body.classList.add('has-custom-cursor');
+}
+
+// ─── HERO CONCENTRIC RING PULSE (ink, on parchment) ──────────────
 const heroCanvas = document.getElementById('hero-canvas');
 if (heroCanvas) {
   const hCtx = heroCanvas.getContext('2d');
-  let hW, hH, hT = 0, hMx = 0.5, hMy = 0.5, hLast = 0, hLive = true;
+  let hW, hH, hT = 0, hLast = 0, hLive = true;
 
   const hResize = () => {
     hW = heroCanvas.width = heroCanvas.offsetWidth;
     hH = heroCanvas.height = heroCanvas.offsetHeight;
   };
 
-  document.addEventListener('mousemove', e => {
-    hMx = e.clientX / window.innerWidth;
-    hMy = e.clientY / window.innerHeight;
-  }, { passive: true });
-
-  // Lissajous orbs — each traces a unique figure-8 / looping path
-  const ORBS = [
-    { a: 1, b: 2, phi: 0,              rr: 0.60, col: [224, 74,  16], al: 0.14 },
-    { a: 2, b: 1, phi: Math.PI / 2,    rr: 0.50, col: [190, 30,  70], al: 0.11 },
-    { a: 3, b: 2, phi: Math.PI * 0.75, rr: 0.42, col: [245, 135, 20], al: 0.10 },
-    { a: 2, b: 3, phi: Math.PI * 1.4,  rr: 0.36, col: [ 95,  15,155], al: 0.09 },
+  const RINGS = [
+    { rr: 0.30, spd: 0.15, width: 1 },
+    { rr: 0.42, spd: -0.10, width: 1 },
+    { rr: 0.54, spd: 0.07, width: 1 },
   ];
 
   const hDraw = ts => {
     if (!hLive) return;
     if (ts - hLast < 1000 / 30) { requestAnimationFrame(hDraw); return; }
     hLast = ts;
-    hT += 0.004;
+    hT += 0.0025;
 
     hCtx.clearRect(0, 0, hW, hH);
-    hCtx.globalCompositeOperation = 'lighter'; // additive glow on dark bg
+    const cx = hW * 0.78, cy = hH * 0.5;
 
-    for (const o of ORBS) {
-      const lx = Math.sin(o.a * hT + o.phi);
-      const ly = Math.sin(o.b * hT);
-      const cx = hW * (0.5 + lx * 0.30 + (hMx - 0.5) * 0.07);
-      const cy = hH * (0.5 + ly * 0.24 + (hMy - 0.5) * 0.07);
-      const rad = Math.min(hW, hH) * o.rr;
-
-      const g = hCtx.createRadialGradient(cx, cy, 0, cx, cy, rad);
-      const [r, gr, b] = o.col;
-      g.addColorStop(0,   `rgba(${r},${gr},${b},${o.al})`);
-      g.addColorStop(0.45,`rgba(${r},${gr},${b},${+(o.al * 0.3).toFixed(3)})`);
-      g.addColorStop(1,   `rgba(${r},${gr},${b},0)`);
-
-      hCtx.fillStyle = g;
-      hCtx.fillRect(0, 0, hW, hH);
+    for (const r of RINGS) {
+      hCtx.beginPath();
+      hCtx.arc(cx, cy, Math.min(hW, hH) * (r.rr + Math.sin(hT * r.spd * 6) * 0.01), 0, Math.PI * 2);
+      hCtx.strokeStyle = 'rgba(22,21,26,0.08)';
+      hCtx.lineWidth = r.width;
+      hCtx.stroke();
     }
-
-    hCtx.globalCompositeOperation = 'source-over';
     requestAnimationFrame(hDraw);
   };
 
@@ -88,7 +100,7 @@ if (animCanvas) {
       if (p.y < 0 || p.y > H) p.vy *= -1;
       ctx.beginPath();
       ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${C},.55)`;
+      ctx.fillStyle = `rgba(${C},.7)`;
       ctx.fill();
     }
     for (let i = 0; i < pts.length; i++) {
@@ -99,7 +111,7 @@ if (animCanvas) {
           ctx.beginPath();
           ctx.moveTo(pts[i].x, pts[i].y);
           ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.strokeStyle = `rgba(${C},${.14 * (1 - d / DIST)})`;
+          ctx.strokeStyle = `rgba(${C},${.22 * (1 - d / DIST)})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
         }
@@ -137,10 +149,13 @@ if (reveals.length) {
   reveals.forEach(el => observer.observe(el));
 }
 
-// ─── NAV SCROLL STATE ─────────────────────────────────────────────
+// ─── NAV SCROLL STATE + SCROLL-PAST BODY FLAG ─────────────────────
 const nav = document.querySelector('.nav');
 if (nav) {
-  const handleScroll = () => nav.classList.toggle('scrolled', window.scrollY > 50);
+  const handleScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+    document.body.classList.toggle('scrolled-past', window.scrollY > 120);
+  };
   window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 }
@@ -175,7 +190,6 @@ if (toggle && mobileNav) {
     });
   });
 
-  // Close on Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
       mobileNav.classList.remove('open');
@@ -187,7 +201,6 @@ if (toggle && mobileNav) {
 // ─── CONTACT FORM + CAPTCHA ───────────────────────────────────────
 const contactForm = document.querySelector('#contact-form');
 if (contactForm) {
-  // Math CAPTCHA
   let _captchaAnswer = 0;
   const _captchaQ = document.getElementById('contact-captcha-q');
   const _captchaErr = document.getElementById('contact-captcha-error');
@@ -201,10 +214,8 @@ if (contactForm) {
 
   contactForm.addEventListener('submit', e => {
     e.preventDefault();
-    // Honeypot check
     const honeypot = contactForm.querySelector('[name="website"]');
     if (honeypot && honeypot.value) return;
-    // Captcha check
     const captchaInput = document.getElementById('contact-captcha');
     if (captchaInput && parseInt(captchaInput.value, 10) !== _captchaAnswer) {
       if (_captchaErr) _captchaErr.style.display = 'block';
@@ -217,10 +228,14 @@ if (contactForm) {
     const original = btn.textContent;
     btn.textContent = 'Message envoyé ✓';
     btn.style.background = '#2d6a30';
+    btn.style.borderColor = '#2d6a30';
+    btn.style.color = '#fff';
     btn.disabled = true;
     setTimeout(() => {
       btn.textContent = original;
       btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
       btn.disabled = false;
       contactForm.reset();
       _initCaptcha();
@@ -284,33 +299,41 @@ document.querySelectorAll('.spotlight').forEach(el => {
   });
 });
 
-// ─── DARK AMBIENT IN-VIEW ─────────────────────────────────────────
-const darkAmbient = document.querySelector('.dark-ambient');
-if (darkAmbient) {
-  const ambObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      darkAmbient.classList.add('in-view');
-      ambObs.unobserve(darkAmbient);
-    }
-  }, { threshold: 0.15 });
-  ambObs.observe(darkAmbient);
-}
-
 // ─── MAGNETIC BUTTONS ─────────────────────────────────────────────
 document.querySelectorAll('.magnetic').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
-    const x = (e.clientX - r.left - r.width / 2) * 0.22;
-    const y = (e.clientY - r.top - r.height / 2) * 0.22;
+    const x = (e.clientX - r.left - r.width / 2) * 0.28;
+    const y = (e.clientY - r.top - r.height / 2) * 0.28;
     btn.style.transform = `translate(${x}px, ${y}px)`;
   });
   btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
 
+// ─── PARALLAX ON SCROLL ───────────────────────────────────────────
+const parallaxEls = document.querySelectorAll('[data-parallax]');
+if (parallaxEls.length) {
+  let ticking = false;
+  const applyParallax = () => {
+    const vh = window.innerHeight;
+    parallaxEls.forEach(el => {
+      const speed = parseFloat(el.dataset.parallax) || 0.15;
+      const r = el.getBoundingClientRect();
+      const center = r.top + r.height / 2 - vh / 2;
+      el.style.transform = `translateY(${center * -speed}px)`;
+    });
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(applyParallax); ticking = true; }
+  }, { passive: true });
+  applyParallax();
+}
+
 // ─── PORTFOLIO ITEMS CLICKABLE ────────────────────────────────────
 document.querySelectorAll('.portfolio-item').forEach(item => {
   item.addEventListener('click', e => {
-    if (e.target.closest('a')) return; // laisser les liens overlay fonctionner
+    if (e.target.closest('a')) return;
     window.location.href = 'contact.html';
   });
 });
